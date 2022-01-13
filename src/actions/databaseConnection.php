@@ -1,6 +1,4 @@
 <?php
-include "src/config.php";
-
 try{
     $pdo = new PDO("mysql:host=".Config::SERVER.";dbname=".Config::DB, Config::USER, Config::PSW);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

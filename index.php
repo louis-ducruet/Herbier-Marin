@@ -2,6 +2,7 @@
 $title = "🏡 Accueil";
 include "src/layout/header.php";
 $result = filter_input(INPUT_GET, "result");
+include_once "src/config.php";
 include_once "src/actions/databaseConnection.php";
 $requette = $pdo->prepare("SELECT date, lieu, donnee FROM releve ORDER BY date DESC");
 $requette->execute();
@@ -112,24 +113,24 @@ $data = $requette->fetchAll();
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
                          aria-labelledby="panelsStayOpen-headingTwo">
                         <div class="accordion-body">
-                            <form action="?" class="was-validated">
+                            <form action="src/actions/addReleve.php" class="was-validated" method="POST">
                                 <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="dateInput" required>
+                                    <input type="date" class="form-control" id="dateInput" name="dateInput" required>
                                     <label for="dateInput">Date du relevé</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="lieuInput"
-                                           placeholder="La Turballe R3" required>
+                                    <input type="text" class="form-control" id="lieuInput" name="lieuInput"
+                                           placeholder="La Turballe R3" maxlength="255" required>
                                     <label for="lieuInput">Lieu du relevé</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text"
                                            class="form-control"
-                                           id="lieuInput"
+                                           id="donneeInput" name="donneeInput"
                                            placeholder="3/2/3/1/5/3/4/2/2"
                                            pattern="([0-9]\/){8}[0-9]"
                                            required>
-                                    <label for="lieuInput">Donnée relevé</label>
+                                    <label for="donneeInput">Donnée relevé</label>
                                     <div class="invalid-feedback">
                                         Les résultats sont sous la forme X/X/X/X/X/X/X/X/X avec X un chiffre.
                                     </div>
