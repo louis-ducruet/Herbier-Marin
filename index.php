@@ -1,7 +1,12 @@
 <?php
 $title = "Mon super herbier";
 include "src/layout/header.php";
+# Valeur pour retour graphique d'ajout de donnée
 $result = filter_input(INPUT_GET, "result");
+session_start();
+$token = uniqid();
+$_SESSION["token"] = $token;
+# Récupération des données précédemment collectées
 include_once "src/config.php";
 include_once "src/actions/databaseConnection.php";
 $requette = $pdo->prepare("SELECT date, lieu, donnee FROM releve ORDER BY date DESC");
@@ -18,6 +23,7 @@ $data = $requette->fetchAll();
             </symbol>
         </svg>
         <?php
+        # Ajouter une notification de retour après ajout
         if ($result === "1") {
             ?>
             <div class="alert alert-success alert-dismissible fade show sticky-top" role="alert">
@@ -78,6 +84,7 @@ $data = $requette->fetchAll();
                                 </thead>
                                 <tbody>
                                 <?php
+                                # Boucle génératrice du tableau récap
                                 foreach ($data as $d) {
                                     ?>
                                     <tr>
@@ -147,6 +154,7 @@ $data = $requette->fetchAll();
                                         <span class="fad fa-exclamation-square me-1"></span>Les résultats sont sous la forme X/X/X/X/X/X/X/X/X avec X un chiffre.
                                     </div>
                                 </div>
+                                <input type="hidden" name="token" value="<?php echo $token; ?>">
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <button class="btn btn-success" type="submit">
                                         <span class="fad fa-plus-circle me-2"></span>Ajouter le relevé

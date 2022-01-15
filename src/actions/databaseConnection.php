@@ -6,7 +6,9 @@ try{
 catch (PDOException $e){
     echo $e;
     die("
-        <h1>Site momentanément indisponible</h1>
-        <p>Une erreur de connexion à la base de donnée bloque le chargement du site web.</p>
+        <div class='container'>
+            <h1>Site momentanément indisponible</h1>
+            <p>Une erreur de connexion à la base de donnée bloque le chargement du site web.</p>
+        </div>
         ");
 }
