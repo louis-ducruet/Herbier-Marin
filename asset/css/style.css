@@ -1,0 +1,29 @@
+.grandTableau{
+    width: 100%;
+    border: 1px solid green;
+}
+.petitTableau{
+    width: 100%;
+}
+.petitTableau tr td{
+    border: 1px solid transparent;
+    height: 0.7rem;
+}
+.petitTableau tr td.table-success{
+    background-color: green;
+}
+.accordion-button:not(.collapsed){
+    color: seagreen;
+    background-color: #dfeedf;
+}
+.accordion-button:focus{
+    box-shadow: 0 0 0 0.25rem rgba(101, 177, 117, 0.75);
+}
+.container{
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.8);
+}
+header{
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.8);
+}

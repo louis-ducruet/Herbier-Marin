@@ -1,5 +1,5 @@
 <?php
-$title = "🏡 Accueil";
+$title = "Mon super herbier";
 include "src/layout/header.php";
 $result = filter_input(INPUT_GET, "result");
 include_once "src/config.php";
@@ -20,7 +20,7 @@ $data = $requette->fetchAll();
         <?php
         if ($result === "1") {
             ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show sticky-top" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                     <use xlink:href="#check-circle-fill"/>
                 </svg>
@@ -31,7 +31,7 @@ $data = $requette->fetchAll();
         }
         elseif ($result === "2") {
             ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show sticky-top" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                     <use xlink:href="#exclamation-triangle-fill"/>
                 </svg>
@@ -41,7 +41,7 @@ $data = $requette->fetchAll();
             <?php
         }
         ?>
-        <div class="container">
+        <div class="container p-0">
             <div class="accordion" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -87,9 +87,9 @@ $data = $requette->fetchAll();
                                         <td><p><?php echo $d['lieu']; ?></p></td>
                                         <td><p><?php echo $d['donnee']; ?></p></td>
                                         <td>
-                                            <a type="button" class="btn btn-primary"
+                                            <a type="button" class="btn btn-success"
                                                href="view.php?data=<?php echo $d['donnee']; ?>">
-                                                Voir la modélisation
+                                                <span class="fad fa-wheat me-2"></span>Voir la modélisation
                                             </a>
                                         </td>
                                     </tr>
@@ -115,13 +115,23 @@ $data = $requette->fetchAll();
                         <div class="accordion-body">
                             <form action="src/actions/addReleve.php" class="was-validated" method="POST">
                                 <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="dateInput" name="dateInput" required>
-                                    <label for="dateInput">Date du relevé</label>
+                                    <input type="date" class="form-control" id="dateInput" name="dateInput" placeholder="20/10/2022" required>
+                                    <label for="dateInput">
+                                        <span class="fad fa-calendar-edit me-1"></span>Date du relevé
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        <span class="fad fa-exclamation-square me-1"></span>Ce champ est obligatoire.
+                                    </div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="lieuInput" name="lieuInput"
                                            placeholder="La Turballe R3" maxlength="255" required>
-                                    <label for="lieuInput">Lieu du relevé</label>
+                                    <label for="lieuInput">
+                                        <span class="fad fa-map-marker-plus me-1"></span>Lieu du relevé
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        <span class="fad fa-exclamation-square me-1"></span>Ce champ est obligatoire.
+                                    </div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text"
@@ -130,13 +140,17 @@ $data = $requette->fetchAll();
                                            placeholder="3/2/3/1/5/3/4/2/2"
                                            pattern="([0-9]\/){8}[0-9]"
                                            required>
-                                    <label for="donneeInput">Donnée relevé</label>
+                                    <label for="donneeInput">
+                                        <span class="fad fa-receipt me-1"></span>Donnée relevé
+                                    </label>
                                     <div class="invalid-feedback">
-                                        Les résultats sont sous la forme X/X/X/X/X/X/X/X/X avec X un chiffre.
+                                        <span class="fad fa-exclamation-square me-1"></span>Les résultats sont sous la forme X/X/X/X/X/X/X/X/X avec X un chiffre.
                                     </div>
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button class="btn btn-success" type="submit">Ajouter le relevé</button>
+                                    <button class="btn btn-success" type="submit">
+                                        <span class="fad fa-plus-circle me-2"></span>Ajouter le relevé
+                                    </button>
                                 </div>
                             </form>
                         </div>
